@@ -1,2 +1,2 @@
 # VBA-challenge
-VBA homework for Data Bootcamp
+This contains my VBA homework (hw2) submissions
