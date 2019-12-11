@@ -10,13 +10,13 @@ For Each ws In Worksheets
   Dim volume, opening, closing, yearChange, perChange As Double
   Dim lastRow, rowCount As Long
   Dim Summary_Table_Row As Integer
-  
+  '--------------------------------
   'Challenge variables
   Dim lastSumRow As Long
   Dim maxChange, minChange, maxVol As Double
   Dim maxTick, minTick, tickVol As String
   Dim rng, rngVol, rngSummary As Range
-  
+  '---------------------------------
   'Set initial variable values
   volume = 0
   lastRow = ws.Cells(Rows.Count, 1).End(xlUp).Row
@@ -94,6 +94,7 @@ For Each ws In Worksheets
     End If
      
   Next i
+'-------------------------------------------
 'Challenge things
 ' Add headers to NEW summary table
   ws.Range("O1:Q1").Font.Bold = True
@@ -107,7 +108,10 @@ For Each ws In Worksheets
   ws.Range("O4").Font.Bold = True
 'Get last row of summary table
 lastSumRow = ws.Cells(Rows.Count, 12).End(xlUp).Row
-
+' I figured that instead of doing another For loop, I'd try to build the summary/
+' table by using a Range and VLookup. I think this should work but unfortunately/
+' I was never able to crack it. Probably should have used another For loop, but/
+' I'd like to focus on Python!
 Set rng = ws.Range("L2:L" & lastSumRow)
 Set rngVol = ws.Range("M2:M" & lastSumRow)
 maxChange = Application.WorksheetFunction.Max(rng)
@@ -123,8 +127,11 @@ minTick = Application.VLookup(minChange, ws.Range("J2:M" & lastSumRow), 1, False
 ws.Range("P3").Value = minTick
 'tickVol = Application.VLookup(maxVol, ws.Range("J2:M" & lastSumRow), 1, False)
 'ws.Range("P4").Value = tickVol
+'--------------------------------------
 
-'MsgBox ws.Name
+
+'MsgBox ws.Name <=used this to test the loop through worksheets
+
 Next
 
 End Sub
